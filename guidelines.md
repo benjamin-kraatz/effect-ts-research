@@ -6,20 +6,20 @@ Write a paper about how using Effect (effect-ts) in TypeScript projects improves
 
 Effect-ts is:
 
-* not a framework in the classical sense
-* not a purely academic construct
-* but rather **an implementation of an effect system** in a real production language
+- not a framework in the classical sense
+- not a purely academic construct
+- but rather **an implementation of an effect system** in a real production language
 
 This places your paper in:
 
-* **Empirical Software Engineering**
-* **Programming Languages (applied)**
-* **Software Architecture & Maintainability**
+- **Empirical Software Engineering**
+- **Programming Languages (applied)**
+- **Software Architecture & Maintainability**
 
 📌 Important:
 You're **not** writing "effect-ts is better," but rather:
 
-> *"How do the properties of effect systems impact software quality?"*
+> _"How do the properties of effect systems impact software quality?"_
 
 ---
 
@@ -41,9 +41,9 @@ You're **not claiming causality**, but rather **cohesion**:
 
 Or more simply:
 
-* At low complexity: neutral to slightly positive
-* At high complexity: significantly positive
-* No range where effects are *harmful*
+- At low complexity: neutral to slightly positive
+- At high complexity: significantly positive
+- No range where effects are _harmful_
 
 📌 This is strong, but not overreaching.
 
@@ -55,33 +55,33 @@ To prevent this from becoming an opinion essay, you need **concrete metrics**.
 
 ### 🔹 Productivity
 
-* Time-to-implement Feature X
-* Time-to-refactor Module Y
-* Onboarding time for new developers
+- Time-to-implement Feature X
+- Time-to-refactor Module Y
+- Onboarding time for new developers
 
 ### 🔹 Code Safety
 
-* Number of untyped / implicit side effects
-* Error classes (Runtime vs Compile-Time)
-* Explicitly modeled error paths
+- Number of untyped / implicit side effects
+- Error classes (Runtime vs Compile-Time)
+- Explicitly modeled error paths
 
 ### 🔹 Code Style & Clarity
 
-* Cyclomatic Complexity
-* Function Length
-* Side-Effect Visibility (qualitative + quantitative)
+- Cyclomatic Complexity
+- Function Length
+- Side-Effect Visibility (qualitative + quantitative)
 
 ### 🔹 Maintenance
 
-* Number of affected files per change
-* Regression rate
-* Test isolation
+- Number of affected files per change
+- Regression rate
+- Test isolation
 
 ### 🔹 Scalability (architectural!)
 
-* Dependency Graph Growth
-* Change Propagation Depth
-* Modularity Score
+- Dependency Graph Growth
+- Change Propagation Depth
+- Modularity Score
 
 ---
 
@@ -91,17 +91,17 @@ This is where you win the paper.
 
 ### Example Complexity Dimensions:
 
-* Number of modules
-* Number of side-effect types (IO, DB, Network, Time, Random)
-* Asynchronous control flows
-* Error paths
-* Team size (optional)
+- Number of modules
+- Number of side-effect types (IO, DB, Network, Time, Random)
+- Asynchronous control flows
+- Error paths
+- Team size (optional)
 
 ➡️ You define **complexity levels**:
 
-* Low
-* Medium
-* High
+- Low
+- Medium
+- High
 
 ---
 
@@ -109,21 +109,22 @@ This is where you win the paper.
 
 ### Option A: **Controlled Case Study**
 
-* Build the same system:
+- Build the same system:
 
-  * once using idiomatic TypeScript
-  * once using effect-ts
-* Systematically vary complexity
+  - once using idiomatic TypeScript
+  - once using effect-ts
+
+- Systematically vary complexity
 
 ### Option B: **Repository Analysis**
 
-* Real effect-ts projects
-* Comparable non-effect projects
-* Analysis over time
+- Real effect-ts projects
+- Comparable non-effect projects
+- Analysis over time
 
 ### Option C: **Hybrid**
 
-* Mini-prototype + real projects
+- Mini-prototype + real projects
 
 📌 Journals **love** case studies when they're honest.
 
@@ -143,8 +144,8 @@ This is where you win the paper.
 
 ✅ Response:
 
-* Explicitly exclude learning phase
-* Productivity measured from *steady state*
+- Explicitly exclude learning phase
+- Productivity measured from _steady state_
 
 ---
 
@@ -152,8 +153,8 @@ This is where you win the paper.
 
 ✅ Response:
 
-* Generalization to *explicit effect systems*
-* effect-ts as reference implementation
+- Generalization to _explicit effect systems_
+- effect-ts as reference implementation
 
 ---
 
@@ -161,8 +162,8 @@ This is where you win the paper.
 
 ✅ Response:
 
-* That's precisely the hypothesis
-* And it will be tested empirically
+- That's precisely the hypothesis
+- And it will be tested empirically
 
 ---
 
@@ -188,8 +189,8 @@ This is where you win the paper.
 
 ## 🎯 Why This Paper Has Good Chances
 
-* Modern topic (TypeScript, JS ecosystem)
-* Academically viable (effect systems)
-* Practically relevant
-* Not ideological
-* Cleanly falsifiable
+- Modern topic (TypeScript, JS ecosystem)
+- Academically viable (effect systems)
+- Practically relevant
+- Not ideological
+- Cleanly falsifiable

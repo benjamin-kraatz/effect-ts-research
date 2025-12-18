@@ -5,24 +5,28 @@ This directory contains a user service implementation using Effect-TS patterns.
 ## Characteristics
 
 ### Error Handling
+
 - All errors are explicit in function type signatures
 - Uses tagged error classes for discriminated unions
 - Type-safe error recovery with `catchTag` and `catchTags`
 - Compiler ensures exhaustive error handling
 
-### Dependencies  
+### Dependencies
+
 - Dependencies declared via `Context.Tag`
 - Visible in the `R` type parameter of `Effect<A, E, R>`
 - Compose using `Layer` for modular dependency injection
 - Compile-time verification that all dependencies are satisfied
 
 ### Concurrency
+
 - Built-in fiber-based concurrency model
 - Simple `concurrency` option for parallel processing
 - Automatic cancellation and interruption handling
 - Structured concurrency with automatic cleanup
 
 ### Resource Management
+
 - `Effect.acquireRelease` for safe resource handling
 - Automatic cleanup in correct order (LIFO)
 - `Effect.scoped` for managing resource lifecycles
@@ -45,6 +49,7 @@ const findUserById = (id: string): Effect.Effect<
 ```
 
 The type signature tells us:
+
 - **Success**: Returns a `User`
 - **Errors**: May fail with `UserNotFoundError`, `DatabaseError`, or `CacheError`
 - **Dependencies**: Requires `Database`, `Cache`, and `Logger` services
@@ -55,8 +60,14 @@ The type signature tells us:
 class Database extends Context.Tag("Database")<
   Database,
   {
-    readonly query: <T>(sql: string, params: unknown[]) => Effect.Effect<T[], DatabaseError>
-    readonly execute: (sql: string, params: unknown[]) => Effect.Effect<void, DatabaseError>
+    readonly query: <T>(
+      sql: string,
+      params: unknown[]
+    ) => Effect.Effect<T[], DatabaseError>;
+    readonly execute: (
+      sql: string,
+      params: unknown[]
+    ) => Effect.Effect<void, DatabaseError>;
   }
 >() {}
 ```
@@ -66,35 +77,35 @@ class Database extends Context.Tag("Database")<
 ```typescript
 const getUserProfile = (userId: string) =>
   Effect.gen(function* () {
-    const user = yield* findUserById(userId)
+    const user = yield* findUserById(userId);
     // ... more effectful operations
-    return { user, accountAge, isNewUser }
-  })
+    return { user, accountAge, isNewUser };
+  });
 ```
 
 ### 4. Layer Composition
 
 ```typescript
-const AppLayerLive = Layer.mergeAll(DatabaseLive, CacheLive, LoggerLive)
-const AppLayerTest = Layer.mergeAll(DatabaseTest, CacheTest, LoggerTest)
+const AppLayerLive = Layer.mergeAll(DatabaseLive, CacheLive, LoggerLive);
+const AppLayerTest = Layer.mergeAll(DatabaseTest, CacheTest, LoggerTest);
 
 // Run with production dependencies
 const runWithLive = (program) =>
-  pipe(program, Effect.provide(AppLayerLive), Effect.runPromise)
+  pipe(program, Effect.provide(AppLayerLive), Effect.runPromise);
 
 // Run with test dependencies
 const runWithTest = (program) =>
-  pipe(program, Effect.provide(AppLayerTest), Effect.runPromise)
+  pipe(program, Effect.provide(AppLayerTest), Effect.runPromise);
 ```
 
 ### 5. Concurrency Control
 
 ```typescript
 // Process with automatic concurrency limit
-Effect.forEach(items, processor, { concurrency: 10 })
+Effect.forEach(items, processor, { concurrency: 10 });
 
 // Collect successes and failures separately
-Effect.partition(items, processor)
+Effect.partition(items, processor);
 ```
 
 ### 6. Type-Safe Error Handling
@@ -107,19 +118,19 @@ pipe(
     DatabaseError: (e) => handleDbError(e),
     CacheError: (e) => handleCacheError(e),
   })
-)
+);
 ```
 
 ## Benefits Over Idiomatic TypeScript
 
-| Aspect | Idiomatic TS | Effect-TS |
-|--------|--------------|-----------|
-| Error visibility | Runtime only | Compile-time |
-| Dependency tracking | Implicit | Explicit in types |
-| Error exhaustiveness | Not checked | Compiler-enforced |
-| Concurrency | Manual impl | Built-in primitives |
-| Resource safety | Manual try/finally | Automatic scoping |
-| Testability | Constructor mocking | Layer substitution |
+| Aspect               | Idiomatic TS        | Effect-TS           |
+| -------------------- | ------------------- | ------------------- |
+| Error visibility     | Runtime only        | Compile-time        |
+| Dependency tracking  | Implicit            | Explicit in types   |
+| Error exhaustiveness | Not checked         | Compiler-enforced   |
+| Concurrency          | Manual impl         | Built-in primitives |
+| Resource safety      | Manual try/finally  | Automatic scoping   |
+| Testability          | Constructor mocking | Layer substitution  |
 
 ## Running the Example
 
@@ -134,4 +145,3 @@ npm install effect
 ## Comparison
 
 Compare with `../no-effect/` to see the traditional approach and understand what challenges Effect-TS solves.
-
